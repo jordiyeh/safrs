@@ -38,7 +38,7 @@ SAFRSBase.db_commit = False
 SAFRSBase.search = search
 SAFRSBase.startswith = startswith
 
-app = Flask('SAFRS Demo App', template_folder='examples/templates')
+app = Flask('SAFRS Demo App')
 app.secret_key ='not so secret'
 CORS( app,
       origins="*",
@@ -321,7 +321,7 @@ def start_api(HOST = '0.0.0.0' ,PORT = 80):
         api  = Api(app, api_spec_url = '/api/swagger', host = '{}:{}'.format(HOST,PORT), schemes = [ "http" ], description = description )
 
         # Flask-Admin Config
-        admin = Admin(app, url='/admin', index_view=MyAdminIndexView(), base_template='my_master.html'  )
+        admin = Admin(app, url='/admin', index_view=MyAdminIndexView(), template_mode='bootstrap3')
         
         for model in [ Person, Book, Review, Publisher, User] :
             # add the flask-admin view
